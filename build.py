@@ -305,7 +305,7 @@ def band_ld():
 def build_home():
     latest = RELEASES[0]
     cards = []
-    for r in RELEASES:
+    for r in RELEASES[1:]:  # the newest is featured above the grid
         cards.append(f"""<li class="card">
   <a href="music/{r['slug']}/" class="card-link">
     <img src="img/{r['slug']}.jpg" alt="{e(r['title'])} cover art" loading="lazy" width="320" height="320">
@@ -374,6 +374,23 @@ def build_home():
   <p class="more"><a class="btn ghost" href="{YOUTUBE}" target="_blank" rel="me noopener">{ICON['youtube']}more on youtube</a></p>
 </section>
 
+<section id="music" aria-labelledby="music-h">
+  <h2 id="music-h" class="section-h">{spiral_svg()}music</h2>
+  <div class="latest">
+    <img src="img/{latest['slug']}.jpg" alt="{e(latest['title'])} cover art" width="480" height="480" class="latest-art" loading="lazy">
+    <div>
+      <p class="eyebrow">newest</p>
+      <h3 class="latest-h"><a href="music/{latest['slug']}/">{e(latest['title'])}</a></h3>
+      <p class="card-meta">{e(latest['kind'].lower())} · out {nice_date(latest['date'])}</p>
+      <p class="listen-on">listen on</p>
+      {pills(listen_links(latest))}
+    </div>
+  </div>
+  <ul class="grid">
+{chr(10).join(cards)}
+  </ul>
+</section>
+
 <section id="photos" aria-labelledby="photos-h">
   <h2 id="photos-h" class="section-h">{spiral_svg()}photos</h2>
   <ul class="gallery">
@@ -381,24 +398,6 @@ def build_home():
   </ul>
 </section>
 {ig_section}
-<section class="latest" aria-labelledby="latest-h">
-  <img src="img/{latest['slug']}.jpg" alt="{e(latest['title'])} cover art" width="480" height="480" class="latest-art" loading="lazy">
-  <div>
-    <p class="eyebrow">newest</p>
-    <h2 id="latest-h"><a href="music/{latest['slug']}/">{e(latest['title'])}</a></h2>
-    <p class="card-meta">{e(latest['kind'].lower())} · out {nice_date(latest['date'])}</p>
-    <p class="listen-on">listen on</p>
-    {pills(listen_links(latest))}
-  </div>
-</section>
-
-<section id="music" aria-labelledby="music-h">
-  <h2 id="music-h" class="section-h">{spiral_svg()}music</h2>
-  <ul class="grid">
-{chr(10).join(cards)}
-  </ul>
-</section>
-
 <section id="contact" class="contact" aria-labelledby="contact-h">
   <h2 id="contact-h" class="section-h">{spiral_svg()}contact</h2>
   <p class="contact-note">booking, press, and everything else</p>

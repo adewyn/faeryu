@@ -138,9 +138,9 @@ section { padding: 70px 0; }
 .section-h .spiral { width: 0.7em; height: 0.7em; color: var(--moss); }
 
 .latest, .rel { background: var(--card); border: 1px solid var(--line); border-radius: calc(var(--radius) + 8px); position: relative; }
-.latest { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 44px; align-items: center; padding: 28px; }
-.latest h2 { font: 400 clamp(48px, 7vw, 80px)/1 var(--serif); margin: 0 0 8px; }
-.latest h2 a { text-decoration: none; }
+.latest { margin: 0 0 22px; display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 44px; align-items: center; padding: 28px; }
+.latest h3 { font: 400 clamp(48px, 7vw, 80px)/1 var(--serif); margin: 0 0 8px; }
+.latest h3 a { text-decoration: none; }
 .latest-art, .rel-art {
   width: 100%; height: auto; border-radius: var(--radius); display: block;
   box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--line);
