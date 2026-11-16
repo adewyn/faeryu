@@ -108,19 +108,22 @@ VIDEOS = [
 # Photos in img/photos (name, alt text, wide?). Each has name.jpg and name-sm.jpg.
 # The live shots at the top of the page (big one first). Same format as PHOTOS.
 STAGE = [
-    ("live-attic-1", "faeryu live in a candlelit attic, red velvet curtains", True),
-    ("live-attic-4", "faeryu live, hands raised at the mic", False),
-    ("live-attic-2", "faeryu live, red dress and fur coat", False),
+    ("stage-duo", "faeryu on stage in moss cloaks under blue projections", True),
+    ("stage-voice", "faeryu singing into a moss-covered microphone", False),
+    ("stage-decks", "faeryu at the controls, lit by candles and projections", False),
 ]
 
+# Photos come from the band's Instagram (@faeryumusic), not raw camera files.
 PHOTOS = [
-    ("fog-moss", "faeryu in moss cloaks among foggy pines", False),
-    ("rain-lake", "faeryu at the edge of a misty lake", True),
-    ("fog-veil", "faeryu under a sheer veil in the fog", False),
-    ("live-attic-3", "faeryu live in the attic", True),
-    ("fog-arch", "faeryu sitting beneath a vine archway in the fog", False),
-    ("rain-duo", "faeryu in a dark, rainy forest", True),
-    ("fog-forest", "faeryu standing in a misty forest", False),
+    ("show-color", "faeryu in front of a swirling, colorful projection", False),
+    ("show-red", "faeryu on a red-lit stage", False),
+    ("garden", "faeryu in a misty garden under a vine arch", False),
+    ("show-mic", "faeryu singing in moss and blue light", False),
+    ("show-candles", "faeryu on a candlelit stage with projections behind", False),
+    ("portrait-ink", "faeryu portrait with black ink pouring from the lips", False),
+    ("show-veil", "faeryu in a white veil and moss, blue light", False),
+    ("show-kneel", "faeryu kneeling in moss and white fabric", False),
+    ("show-duo", "faeryu together on stage in blue light", False),
 ]
 
 # Latest Instagram posts, refreshed daily by tools/instagram.py (GitHub Action).
