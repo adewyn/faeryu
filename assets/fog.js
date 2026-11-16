@@ -18,10 +18,10 @@
   const pointer = { x: -9999, y: -9999, tx: -9999, ty: -9999, active: false, energy: 0 };
 
   const FOG_COLORS = [
-    [150, 165, 150], // grey-green mist
-    [120, 145, 125], // moss haze
-    [175, 180, 170], // bone fog
-    [95, 115, 120],  // cold swamp blue
+    [115, 170, 180], // teal mist
+    [90, 125, 170],  // night blue
+    [165, 195, 205], // pale blue fog
+    [70, 135, 145],  // deep teal
   ];
 
   // Pre-drawn glow sprites.
@@ -37,10 +37,10 @@
     return c;
   }
   const WISP = [
-    glowSprite('225,240,205', 64, [[0, 1], [0.2, 0.4], [1, 0]]),
-    glowSprite('190,235,215', 64, [[0, 1], [0.2, 0.4], [1, 0]]),
+    glowSprite('205,240,246', 64, [[0, 1], [0.2, 0.4], [1, 0]]),
+    glowSprite('160,215,248', 64, [[0, 1], [0.2, 0.4], [1, 0]]),
   ];
-  const LANTERN = glowSprite('205,225,190', 256, [[0, 1], [1, 0]]);
+  const LANTERN = glowSprite('180,225,238', 256, [[0, 1], [1, 0]]);
 
   let blobs = [];
   let specks = [];

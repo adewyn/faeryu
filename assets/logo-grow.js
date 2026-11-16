@@ -35,10 +35,10 @@
       float d = T - t;
       float rev = smoothstep(0.0, 0.007, d);
       float front = rev * exp(-d / 0.035);
-      vec3 col = mix(vec3(0.933, 0.941, 0.902), vec3(0.82, 1.0, 0.64), clamp(front * 1.2, 0.0, 1.0));
+      vec3 col = mix(vec3(0.925, 0.953, 0.953), vec3(0.6, 0.97, 0.98), clamp(front * 1.2, 0.0, 1.0));
       float a = cov * rev;
       float h = clamp(halo * rev * (0.22 + front * 1.4), 0.0, 1.0);
-      vec3 rgb = col * a + vec3(0.70, 0.88, 0.58) * h * (1.0 - a);
+      vec3 rgb = col * a + vec3(0.46, 0.82, 0.92) * h * (1.0 - a);
       gl_FragColor = vec4(rgb, a + h * (1.0 - a) * 0.75);
     }`;
   function sh(type, src) {

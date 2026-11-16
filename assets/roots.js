@@ -25,7 +25,7 @@
   // ---------- moss sprites: drawn once, stamped many times ----------
   const MOSS_SPRITES = [];
   function makeMossSprites() {
-    const greens = ['#22331b', '#2b3f20', '#344c26', '#3e592c', '#4a6833', '#57773a', '#668842'];
+    const greens = ['#1b3230', '#203e3a', '#274b45', '#2f584f', '#38665a', '#447463', '#548470'];
     for (let v = 0; v < 6; v++) {
       const S = 128;
       const c = document.createElement('canvas');
@@ -35,8 +35,8 @@
       const r = () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
       // soft dark base so the clump sits on the vine
       const base = g.createRadialGradient(64, 70, 4, 64, 70, 54);
-      base.addColorStop(0, 'rgba(20,30,16,0.9)');
-      base.addColorStop(1, 'rgba(20,30,16,0)');
+      base.addColorStop(0, 'rgba(12,26,28,0.9)');
+      base.addColorStop(1, 'rgba(12,26,28,0)');
       g.fillStyle = base;
       g.fillRect(0, 0, S, S);
       // cushion of tiny tufts, lighter toward the top
@@ -55,7 +55,7 @@
       // dew-light speckles on top
       for (let i = 0; i < 40; i++) {
         const x = 64 + (r() - 0.5) * 70, y = 58 + (r() - 0.5) * 34;
-        g.fillStyle = `rgba(170,205,120,${0.25 + r() * 0.35})`;
+        g.fillStyle = `rgba(145,215,210,${0.25 + r() * 0.35})`;
         g.beginPath();
         g.arc(x, y, 0.6 + r() * 1.1, 0, Math.PI * 2);
         g.fill();
@@ -65,7 +65,7 @@
       for (let i = 0; i < stalks; i++) {
         const x = 64 + (r() - 0.5) * 60, y = 62 + (r() - 0.5) * 16;
         const h = 10 + r() * 22, lean = (r() - 0.5) * 12;
-        g.strokeStyle = 'rgba(120,95,60,0.85)';
+        g.strokeStyle = 'rgba(85,100,95,0.85)';
         g.lineWidth = 0.9;
         g.beginPath();
         g.moveTo(x, y);
@@ -73,12 +73,12 @@
         g.stroke();
         const cx = x + lean, cy = y - h;
         const glow = g.createRadialGradient(cx, cy, 0, cx, cy, 6);
-        glow.addColorStop(0, 'rgba(225,245,180,0.9)');
-        glow.addColorStop(0.35, 'rgba(190,225,140,0.45)');
-        glow.addColorStop(1, 'rgba(190,225,140,0)');
+        glow.addColorStop(0, 'rgba(205,248,245,0.9)');
+        glow.addColorStop(0.35, 'rgba(140,225,230,0.45)');
+        glow.addColorStop(1, 'rgba(140,225,230,0)');
         g.fillStyle = glow;
         g.fillRect(cx - 6, cy - 6, 12, 12);
-        g.fillStyle = '#d8eeb0';
+        g.fillStyle = '#d2f5f2';
         g.beginPath();
         g.ellipse(cx, cy, 1.3, 2, lean * 0.05, 0, Math.PI * 2);
         g.fill();
@@ -169,8 +169,8 @@
   }
 
   // ---------- drawing ----------
-  const RIM = 'rgba(160,190,135,0.13)';
-  const LEAF = ['#1d2b17', '#23361b', '#2b4220'];
+  const RIM = 'rgba(140,200,212,0.14)';
+  const LEAF = ['#14282b', '#183234', '#1d3c3a'];
   const L = [], R = [];
 
   function drawBranch(b, f) {
@@ -215,7 +215,7 @@
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
       ctx.lineWidth = Math.max(0.6, b.w * 0.14);
-      ctx.strokeStyle = 'rgba(92,112,74,0.5)';
+      ctx.strokeStyle = 'rgba(66,112,124,0.52)';
       ctx.stroke();
       ctx.lineWidth = 1;
       ctx.strokeStyle = RIM;
@@ -237,7 +237,7 @@
     ctx.beginPath();
     ctx.moveTo(size * 0.08, 0);
     ctx.lineTo(size * 0.85, 0);
-    ctx.strokeStyle = 'rgba(120,150,95,0.35)';
+    ctx.strokeStyle = 'rgba(105,170,178,0.38)';
     ctx.lineWidth = 0.6;
     ctx.stroke();
   }
@@ -245,7 +245,7 @@
   function draw(g) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#0a0d09';
+    ctx.fillStyle = '#060b0e';
     ctx.strokeStyle = RIM;
     ctx.lineWidth = 1;
     ctx.lineJoin = 'round';

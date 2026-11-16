@@ -66,9 +66,15 @@ document.addEventListener('click', (ev) => {
   const els = document.querySelectorAll('.card, .latest, .about, .rel, .section-h, .feature, .vgrid li, .ph, .contact');
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   els.forEach((el) => el.classList.add('veil'));
+  const list = [...els];
   const io = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
-      if (en.isIntersecting) { en.target.classList.add('shown'); io.unobserve(en.target); }
+      if (!en.isIntersecting) return;
+      // Also reveal everything above it, so jumping down never leaves gaps.
+      const k = list.indexOf(en.target);
+      for (let j = 0; j <= k; j++) {
+        if (!list[j].classList.contains('shown')) { list[j].classList.add('shown'); io.unobserve(list[j]); }
+      }
     });
   }, { rootMargin: '0px 0px -8% 0px' });
   els.forEach((el, i) => { el.style.transitionDelay = `${(i % 6) * 60}ms`; io.observe(el); });
@@ -86,4 +92,12 @@ document.addEventListener('click', (ev) => {
     });
     el.addEventListener('pointerleave', () => { el.style.transform = ''; });
   });
+})();
+
+// The "listen" menu closes when you tap elsewhere or press Escape.
+(() => {
+  const menu = document.querySelector('.listen-menu');
+  if (!menu) return;
+  document.addEventListener('click', (ev) => { if (menu.open && !menu.contains(ev.target)) menu.open = false; });
+  document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') menu.open = false; });
 })();

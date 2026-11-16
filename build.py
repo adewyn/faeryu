@@ -15,51 +15,87 @@ BIO = ("faeryu is an electronic duo that experiments with unsettling, dissonant 
        "corners of the mind.")
 GENRES = ["dream pop", "shoegaze", "dark ambient", "witch house", "electronic"]
 
-# Other places to find the band. Add links here when you have them.
+# Other places to find the band.
 INSTAGRAM = "https://www.instagram.com/faeryumusic/"
 YOUTUBE = "https://www.youtube.com/@faeryumusic"
 EMAIL = "faeryumusic@gmail.com"
+APPLE = "https://music.apple.com/us/artist/faeryu/1456068946"
+DEEZER = "https://www.deezer.com/artist/61466072"
+SOUNDCLOUD = "https://soundcloud.com/faeryu"
+YTMUSIC = "https://music.youtube.com/search?q=faeryu"
 LINKS = [
     ("instagram", INSTAGRAM),
     ("youtube", YOUTUBE),
+    ("apple music", APPLE),
+    ("soundcloud", SOUNDCLOUD),
+    ("deezer", DEEZER),
     ("spotify", SPOTIFY),
-    # ("apple music", "https://music.apple.com/..."),
-    # ("youtube", "https://youtube.com/@..."),
-    # ("instagram", "https://instagram.com/..."),
-    # ("bandcamp", "https://faeryu.bandcamp.com"),
+]
+# Where to listen to everything (the "listen" menu). Spotify goes last.
+LISTEN = [
+    ("apple music", APPLE),
+    ("youtube music", YTMUSIC),
+    ("soundcloud", SOUNDCLOUD),
+    ("deezer", DEEZER),
+    ("spotify", SPOTIFY),
 ]
 
+
+def R(slug, title, kind, date, apple, deezer, tracks, spotify=None, yt=None):
+    return dict(slug=slug, title=title, kind=kind, date=date, apple=apple, deezer=deezer,
+                tracks=tracks, spotify=spotify, yt=yt)
+
+
 # Newest first. "unbodied" is left out on purpose.
+# apple = the end of the Apple Music album link, deezer = Deezer album number,
+# spotify = Spotify album id (if known), yt = YouTube video id (if there is one).
 RELEASES = [
-    dict(slug="solace", title="solace", kind="single", date="2026-10-03",
-         album="6XX43Hi5WwEy8lXO7Uglct", tracks=[("solace", 215, "46k9gJY7CsJWa1XdB6iyAQ")]),
-    dict(slug="kudzu", title="kudzu", kind="single", date="2025-09-29",
-         album="1zVtzG33DnvJ4Hhi3q6bN3", tracks=[("kudzu", 152, "6bUBfCNGmL95GBDfRNqv1V")]),
-    dict(slug="corruption", title="corruption", kind="single", date="2025-08-29",
-         album="7pJp8OEGbuXQ4Jx3BkujNP", tracks=[("corruption", 213, "4vR4iRWsq1e1hpVgkKb09m")]),
-    dict(slug="quietus", title="quietus", kind="single", date="2025-07-13",
-         album="21DG8g0xBZIBpsP6SyIQRx", tracks=[("quietus", 159, "0OBJSXZ0CziPVqQSLWSM9B")]),
-    dict(slug="dissolution", title="dissolution", kind="single", date="2025-04-25",
-         album="3ASYQKAbFKs9e2AX5CGnyK", tracks=[("dissolution", 249, "3peXNPjPyKXQSpc0Ac7byH")]),
-    dict(slug="the-greys", title="the greys", kind="single", date="2025-03-07",
-         album="0iPWVWrjkwi1yW4xMaW5y3", tracks=[("the greys", 150, "4mrU31N3ijc96YHqqbgUwq")]),
-    dict(slug="bare-bones", title="bare bones", kind="EP", date="2023-10-13",
-         album="1jTNMFzCTIkLzx5XXTi9oz", tracks=[
-             ("rapture", 166, "5sAYtA9l9eadQQRrggHgxL"),
-             ("empty", 266, "7Fph7Nq1mu1OZVL9PtaJqH"),
-             ("so far away", 207, "1D2FEd8Ih5Utkjzfd3mjm0"),
-             ("abstain", 272, "1iehpaKxiv081hfKkKeJHs"),
-             ("yearn", 178, "3caRpFOf1RVvPmjjwKIwUI")]),
-    dict(slug="empty", title="empty", kind="single", date="2023-09-22",
-         album="3Fu4mfK1Qa8ihoxLjC9amq", tracks=[("empty", 266, "3jl5y630geFGyyzDdNRme9")]),
-    dict(slug="weathered", title="weathered", kind="single", date="2020-06-05",
-         album="1Ykcvm7dyrG5ke7Ra6pRnt", tracks=[("weathered", 300, "36KsZKGmYQWgKYDHgK4B7k")]),
+    R("solace", "solace", "single", "2026-10-03", "solace-single/6817999753", 1110785652, [("solace", 215)], spotify="6XX43Hi5WwEy8lXO7Uglct"),
+    R("kudzu", "kudzu", "single", "2025-09-29", "kudzu-single/1842696876", 828301611, [("kudzu", 152)], spotify="1zVtzG33DnvJ4Hhi3q6bN3"),
+    R("corruption", "corruption", "single", "2025-08-29", "corruption-single/1836349434", 811911051, [("corruption", 213)], spotify="7pJp8OEGbuXQ4Jx3BkujNP", yt="x8CkCrMcikY"),
+    R("quietus", "quietus", "single", "2025-07-13", "quietus-single/1826338701", 786882391, [("quietus", 159)], spotify="21DG8g0xBZIBpsP6SyIQRx"),
+    R("inside-out", "inside out", "single", "2025-06-13", "inside-out-single/1819139069", 768285401, [("inside out", 171)]),
+    R("dreamwalker", "dreamwalker", "single", "2025-05-10", "dreamwalker-single/1811837198", 750249201, [("dreamwalker", 257)], yt="hYPpXPxU5Lc"),
+    R("dissolution", "dissolution", "single", "2025-04-25", "dissolution-single/1810140792", 746383031, [("dissolution", 249)], spotify="3ASYQKAbFKs9e2AX5CGnyK"),
+    R("the-greys", "the greys", "single", "2025-03-07", "the-greys-single/1797646662", 714649041, [("the greys", 150)], spotify="0iPWVWrjkwi1yW4xMaW5y3"),
+    R("thousand-pines", "thousand pines", "single", "2024-03-15", "thousand-pines-single/1733382677", 553621972, [("thousand pines", 176)], yt="GC-t83oLFkc"),
+    R("heathen", "heathen", "single", "2023-12-22", "heathen-single/1721183156", 523267512, [("heathen", 230)], yt="4_ptRgHbTuY"),
+    R("beckoning", "beckoning", "single", "2023-10-27", "beckoning-single/1713799447", 505990771, [("beckoning", 127)]),
+    R("bare-bones", "bare bones", "EP", "2023-10-13", "bare-bones-ep/1707366793", 487700045, [
+        ("rapture", 166), ("empty", 266), ("so far away", 207), ("abstain", 272), ("yearn", 178)],
+      spotify="1jTNMFzCTIkLzx5XXTi9oz", yt="1QL9TjzdS_0"),
+    R("abstain", "abstain", "single", "2023-10-06", "abstain-single/1707372732", 488370435, [("abstain", 272)], yt="SVuJBa2CDJs"),
+    R("so-far-away", "so far away", "single", "2023-09-29", "so-far-away-single/1707374805", 487893295, [("so far away", 207)], yt="locxFq9nfFI"),
+    R("empty", "empty", "single", "2023-09-22", "empty-single/1707124252", 487184135, [("empty", 266)], spotify="3Fu4mfK1Qa8ihoxLjC9amq", yt="HVhIkhFfcGs"),
+    R("deserter", "deserter", "single", "2022-11-22", "deserter-single/1654662880", 377542297, [("deserter", 213)], yt="Q8xz-kBPHQU"),
+    R("weathered", "weathered", "single", "2020-06-05", "weathered-single/1513294960", 148310542, [("weathered", 300)], spotify="1Ykcvm7dyrG5ke7Ra6pRnt", yt="cykCc7JRu-4"),
+    R("resurrection-spell", "resurrection spell", "single", "2020-03-03", "resurrection-spell-single/1499654276", 132513592, [("resurrection spell", 290)]),
+    R("sidestep", "sidestep", "single", "2020-02-02", "sidestep-single/1496052774", 127526322, [("sidestep", 224)]),
 ]
+
+
+def listen_links(r):
+    """Every place to hear one release. Spotify goes last."""
+    q = r["title"].replace(" ", "+")
+    return [
+        ("apple music", f"https://music.apple.com/us/album/{r['apple']}"),
+        ("youtube music", f"https://music.youtube.com/search?q=faeryu+{q}"),
+        ("soundcloud", SOUNDCLOUD),
+        ("deezer", f"https://www.deezer.com/album/{r['deezer']}"),
+        ("spotify", f"https://open.spotify.com/album/{r['spotify']}" if r["spotify"] else SPOTIFY),
+    ]
+
+
+def pills(links, cls="pills"):
+    return (f'<ul class="{cls}">' + "".join(
+        f'<li><a href="{e(u)}" target="_blank" rel="noopener">{e(n)}</a></li>' for n, u in links) + "</ul>")
+
 
 # YouTube videos: (id, title, label, date). First one is featured big.
 VIDEOS = [
-    ("hYPpXPxU5Lc", "dreamwalker", "", "2025-05-15"),
     ("1QL9TjzdS_0", "bare bones", "full audiovisual ep", "2023-10-13"),
+    ("HVhIkhFfcGs", "empty", "", "2024-10-11"),
+    ("hYPpXPxU5Lc", "dreamwalker", "", "2025-05-15"),
     ("Q8xz-kBPHQU", "deserter", "", "2022-11-25"),
     ("SVuJBa2CDJs", "abstain", "", "2024-10-25"),
     ("4_ptRgHbTuY", "heathen", "", "2023-12-22"),
@@ -145,7 +181,6 @@ def topbar(root, home):
   <div class="tb-right">
     <a class="social" href="{INSTAGRAM}" target="_blank" rel="me noopener">{ICON['instagram']}<span class="handle">@faeryumusic</span><span class="sr"> on instagram</span></a>
     <a class="social" href="{YOUTUBE}" target="_blank" rel="me noopener">{ICON['youtube']}<span class="sr">faeryu on youtube</span></a>
-    <a class="social" href="{SPOTIFY}" target="_blank" rel="me noopener">{ICON['spotify']}<span class="sr">faeryu on spotify</span></a>
   </div>
 </nav>
 """
@@ -162,7 +197,7 @@ def head(title, desc, path, image, ld, root, home=False):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 {canon}
-<meta name="theme-color" content="#070908">
+<meta name="theme-color" content="#05090b">
 <meta property="og:type" content="music.musician">
 <meta property="og:site_name" content="faeryu music">
 <meta property="og:title" content="{e(title)}">
@@ -207,10 +242,10 @@ def player(album_id, label):
             f'<span class="play-dot">{spiral_svg()}</span><span>play here</span></button>')
 
 
-def video_button(vid, title, sub, big=False):
+def video_button(vid, title, sub, big=False, root=""):
     # A thumbnail that turns into the YouTube player only when tapped.
     return (f'<button class="video{" big" if big else ""}" data-yt="{vid}" aria-label="play {e(title)} video">'
-            f'<img src="img/videos/{vid}.jpg" alt="{e(title)} by faeryu, video" loading="lazy" decoding="async" width="960" height="540">'
+            f'<img src="{root}img/videos/{vid}.jpg" alt="{e(title)} by faeryu, video" loading="lazy" decoding="async" width="960" height="540">'
             f'<span class="v-shade"></span><span class="v-play">{spiral_svg()}</span>'
             f'<span class="v-text"><span class="v-title">{e(title)}</span><span class="v-sub">{e(sub)}</span></span></button>')
 
@@ -272,7 +307,10 @@ def build_home():
 <header class="hero">
   <h1 class="wordmark"><span class="sr">faeryu</span><span class="logo-wrap" data-map="img/logo-grow.png">{logo_svg()}</span></h1>
   <nav class="hero-links">
-    <a class="btn" href="{SPOTIFY}" target="_blank" rel="me noopener">listen</a>
+    <details class="listen-menu">
+      <summary class="btn">listen</summary>
+      <div class="menu">{pills(LISTEN, "menu-list")}</div>
+    </details>
     <a class="btn ghost" href="#watch">watch</a>
   </nav>
 </header>
@@ -308,7 +346,8 @@ def build_home():
     <p class="eyebrow">newest</p>
     <h2 id="latest-h"><a href="music/{latest['slug']}/">{e(latest['title'])}</a></h2>
     <p class="card-meta">{e(latest['kind'].lower())} · out {nice_date(latest['date'])}</p>
-    {player(latest['album'], latest['title'])}
+    <p class="listen-on">listen on</p>
+    {pills(listen_links(latest))}
   </div>
 </section>
 
@@ -346,8 +385,8 @@ def build_release(r, i):
     path = f"/music/{r['slug']}/"
     total = sum(t[1] for t in r["tracks"])
     track_rows = "\n".join(
-        f'<li><span class="tn">{n:02d}</span><a href="https://open.spotify.com/track/{tid}" target="_blank" rel="noopener">{e(t)}</a><span class="td">{mmss(d)}</span></li>'
-        for n, (t, d, tid) in enumerate(r["tracks"], 1))
+        f'<li><span class="tn">{n:02d}</span><span class="tt">{e(t)}</span><span class="td">{mmss(d)}</span></li>'
+        for n, (t, d) in enumerate(r["tracks"], 1))
     newer = RELEASES[i - 1] if i > 0 else None
     older = RELEASES[i + 1] if i + 1 < len(RELEASES) else None
     nav = '<nav class="pager">'
@@ -358,17 +397,17 @@ def build_release(r, i):
     if r["kind"] == "EP":
         ld = {"@context": "https://schema.org", "@type": "MusicAlbum", "name": r["title"],
               "albumReleaseType": "EPRelease", "numTracks": len(r["tracks"]),
-              "track": [{"@type": "MusicRecording", "name": t, "duration": iso_dur(d),
-                         "url": f"https://open.spotify.com/track/{tid}"} for t, d, tid in r["tracks"]]}
+              "track": [{"@type": "MusicRecording", "name": t, "duration": iso_dur(d)} for t, d in r["tracks"]]}
     else:
-        t, d, tid = r["tracks"][0]
+        t, d = r["tracks"][0]
         ld = {"@context": "https://schema.org", "@type": "MusicRecording", "name": t,
               "duration": iso_dur(d), "inAlbum": {"@type": "MusicAlbum", "name": r["title"],
                                                   "albumReleaseType": "SingleRelease"}}
     ld.update({"byArtist": {"@type": "MusicGroup", "name": BAND, "url": abs_url("/")},
                "datePublished": r["date"], "image": abs_url(f"/img/{r['slug']}.jpg"),
                "url": abs_url(path), "genre": GENRES,
-               "sameAs": [f"https://open.spotify.com/album/{r['album']}"]})
+               "sameAs": [u for n, u in listen_links(r) if n not in ("youtube music", "soundcloud") and u != SPOTIFY]
+                         + ([f"https://www.youtube.com/watch?v={r['yt']}"] if r["yt"] else [])})
     body = f"""<main class="release">
 <article class="rel">
   <img src="{root}img/{r['slug']}.jpg" alt="{e(r['title'])} by faeryu, cover art" width="640" height="640" class="rel-art">
@@ -379,10 +418,9 @@ def build_release(r, i):
     <ol class="tracks">
 {track_rows}
     </ol>
-    <div class="rel-actions">
-      {player(r['album'], r['title'])}
-      <a class="btn ghost" href="https://open.spotify.com/album/{r['album']}" target="_blank" rel="noopener">open in spotify</a>
-    </div>
+    <p class="listen-on">listen on</p>
+    {pills(listen_links(r))}
+    {('<div class="rel-video">' + video_button(r['yt'], r['title'], 'watch', big=True, root=root) + '</div>') if r['yt'] else ''}
   </div>
 </article>
 {nav}
