@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adewyn.github.io/faeryu/sitemap.xml
