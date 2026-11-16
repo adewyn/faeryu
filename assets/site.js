@@ -63,7 +63,7 @@ document.addEventListener('click', (ev) => {
 
 // Cards and sections fade up out of the fog as you scroll.
 (() => {
-  const els = document.querySelectorAll('.card, .latest, .about, .rel, .section-h, .feature, .vgrid li, .ph, .contact');
+  const els = document.querySelectorAll('.st, .card, .latest, .about, .rel, .section-h, .feature, .vgrid li, .ph, .ig-grid li, .contact');
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   els.forEach((el) => el.classList.add('veil'));
   const list = [...els];

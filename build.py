@@ -106,17 +106,33 @@ VIDEOS = [
 ]
 
 # Photos in img/photos (name, alt text, wide?). Each has name.jpg and name-sm.jpg.
+# The live shots at the top of the page (big one first). Same format as PHOTOS.
+STAGE = [
+    ("live-attic-1", "faeryu live in a candlelit attic, red velvet curtains", True),
+    ("live-attic-4", "faeryu live, hands raised at the mic", False),
+    ("live-attic-2", "faeryu live, red dress and fur coat", False),
+]
+
 PHOTOS = [
-    ("live-attic-1", "faeryu performing live in a candlelit attic", True),
     ("fog-moss", "faeryu in moss cloaks among foggy pines", False),
     ("rain-lake", "faeryu at the edge of a misty lake", True),
     ("fog-veil", "faeryu under a sheer veil in the fog", False),
-    ("live-attic-2", "faeryu singing live, red dress and fur coat", True),
+    ("live-attic-3", "faeryu live in the attic", True),
     ("fog-arch", "faeryu sitting beneath a vine archway in the fog", False),
     ("rain-duo", "faeryu in a dark, rainy forest", True),
     ("fog-forest", "faeryu standing in a misty forest", False),
-    ("live-attic-3", "faeryu live in the attic", True),
 ]
+
+# Latest Instagram posts, refreshed daily by tools/instagram.py (GitHub Action).
+IG_DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "instagram.json")
+
+
+def load_instagram():
+    try:
+        with open(IG_DATA) as f:
+            return json.load(f).get("posts", [])[:6]
+    except (OSError, ValueError):
+        return []
 
 MONTHS = ["january", "february", "march", "april", "may", "june", "july",
           "august", "september", "october", "november", "december"]
@@ -300,9 +316,25 @@ def build_home():
     vids = []
     for vid, t, lab, d in VIDEOS[1:]:
         vids.append(f"""<li>{video_button(vid, t, lab or d[:4])}</li>""")
-    photos = []
-    for i, (name, alt, wide) in enumerate(PHOTOS):
-        photos.append(f"""<li class="ph{' wide' if wide else ''}"><button class="ph-btn" data-i="{i}" data-full="img/photos/{name}.jpg" aria-label="view photo: {e(alt)}"><img src="img/photos/{name}-sm.jpg" alt="{e(alt)}" loading="lazy" decoding="async"></button></li>""")
+    def ph(name, alt, cls, big=False):
+        src = f"img/photos/{name}.jpg" if big else f"img/photos/{name}-sm.jpg"
+        lazy = 'fetchpriority="high"' if big else 'loading="lazy"'
+        return f"""<li class="{cls}"><button class="ph-btn" data-full="img/photos/{name}.jpg" aria-label="view photo: {e(alt)}"><img src="{src}" alt="{e(alt)}" {lazy} decoding="async"></button></li>"""
+    stage = [ph(n, a, "st st-big" if big else "st", big).replace('loading="lazy"', '') for n, a, big in STAGE]
+    photos = [ph(n, a, "ph wide" if w else "ph") for n, a, w in PHOTOS]
+    ig = load_instagram()
+    ig_items = "\n".join(
+        f"""<li><a href="{e(p['permalink'])}" target="_blank" rel="noopener"><img src="{e(p['img'])}" alt="{e(p.get('alt') or 'faeryu on instagram')}" width="{p.get('w', 700)}" height="{p.get('h', 700)}" loading="lazy" decoding="async">{'<span class="ig-kind" aria-hidden="true">▶</span>' if p.get('video') else ''}</a></li>"""
+        for p in ig)
+    ig_section = f"""
+<section id="instagram" class="ig" aria-labelledby="ig-h">
+  <h2 id="ig-h" class="section-h">{spiral_svg()}@faeryumusic</h2>
+  <ul class="ig-grid">
+{ig_items}
+  </ul>
+  <p class="more"><a class="btn ghost" href="{INSTAGRAM}" target="_blank" rel="me noopener">{ICON['instagram']}follow on instagram</a></p>
+</section>
+""" if ig else ""
     body = f"""<main>
 <header class="hero">
   <h1 class="wordmark"><span class="sr">faeryu</span><span class="logo-wrap" data-map="img/logo-grow.png">{logo_svg()}</span></h1>
@@ -314,6 +346,12 @@ def build_home():
     <a class="btn ghost" href="#watch">watch</a>
   </nav>
 </header>
+
+<section id="live" class="stage" aria-label="faeryu live">
+  <ul class="stage-grid">
+{chr(10).join(stage)}
+  </ul>
+</section>
 
 <section id="about" class="about" aria-labelledby="about-h">
   <img src="img/faeryu.jpg" alt="faeryu" width="400" height="400" loading="lazy" class="about-img">
@@ -339,7 +377,7 @@ def build_home():
 {chr(10).join(photos)}
   </ul>
 </section>
-
+{ig_section}
 <section class="latest" aria-labelledby="latest-h">
   <img src="img/{latest['slug']}.jpg" alt="{e(latest['title'])} cover art" width="480" height="480" class="latest-art" loading="lazy">
   <div>
